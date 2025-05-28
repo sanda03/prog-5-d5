@@ -22,7 +22,7 @@ public class CoffeMachine {
         if (!powerOn) return "⚠️ c3: Power outage";
         if (!waterAvailable) return "⚠️ c4: No water";
 
-        Coffe selected = coffees.get(type.toLowerCase());
+        Coffe selected = coffes.get(type.toLowerCase());
         if (selected == null) return "⚠️ c5: Invalid type";
         if (!selected.isAvailable()) return "⚠️ c2: Out of coffee";
         if (!money.withdraw(selected.getPrice())) return "⚠️ c1: Not enough funds";
@@ -32,6 +32,9 @@ public class CoffeMachine {
 
         selected.decrementQuantity();
         return "✅ Preparing your " + selected.getName() + "... Enjoy!";
+    }
+    public void addCoffe(Coffe coffe) {
+        coffes.put(coffe.getName().toLowerCase(), coffe);
     }
 
     public void setPowerOn(boolean powerOn) {
